@@ -54,7 +54,7 @@ pub use guard_knowledge::{BlockExample, GuardKnowledge, PassCause, PassExample, 
 pub use nah_effinterp::{DeclaredSource, DeclaredSourceObservations, SourceProvider};
 pub use pipeline::{
     AnalysisRefusal, DecisionResult, EvaluationFailure, EvidenceProvenance, decide_replay,
-    decide_replay_code, decide_with,
+    decide_replay_code, decide_with, decide_with_budget,
 };
 
 pub use nah_effinterp::{ObservationBudget, ObservationResolver};

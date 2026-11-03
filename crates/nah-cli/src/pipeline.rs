@@ -328,6 +328,31 @@ where
     )
 }
 
+/// `decide_with` under a caller-chosen analysis budget in place of the
+/// interactive 100 ms.
+pub fn decide_with_budget<F>(
+    input: &ToolCallInput,
+    ctx: &Ctx,
+    budget: Duration,
+    observe: F,
+) -> DecisionResult
+where
+    F: FnMut(&ObservationRequest) -> Result<Observation, String>,
+{
+    decide_bounded(
+        input,
+        None,
+        ctx,
+        &SelfProtectionProjection::default(),
+        nah_policy::EnforcementMode::Normal,
+        budget,
+        None,
+        None,
+        observe,
+        |_, _, _| ConsultedExtensions::default(),
+    )
+}
+
 #[cfg(all(test, unix))]
 fn decide_with_code<F>(
     input: &ToolCallInput,
